@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <div class="fields">
-      <input type="text" placeholder="Firstname" />
-      <input type="text" placeholder="Lastname" />
-      <input type="text" placeholder="Email" />
-      <input type="text" placeholder="Password" />
-      <button>Register</button>
+    <div class="form">
+      <form>
+        <input type="text" placeholder="Firstname" />
+        <input type="text" placeholder="Lastname" />
+        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Password" />
+        <button>Register</button>
+      </form>
     </div>
   </div>
 </template>
@@ -23,5 +25,15 @@ export default {
 .container{
     display: flex;
     justify-content: center;
+}
+.form{
+    position: relative;
+    width: 70%;
+    margin: auto;
+    padding: 10%;
+    text-align: center;
+}
+.form input{
+    width: 30%;
 }
 </style>
