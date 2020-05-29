@@ -1,13 +1,10 @@
 <template>
   <div class="login-page">
     <div class="form">
-      <form class="register-form">
-        <input type="text" id="firstname" placeholder="Firstname" autocomplete="off" />
-        <input type="text" id="lastname" placeholder="Lastname" autocomplete="off" />
+      <form class="login-form" onsubmit="return validate()">
         <input type="text" id="email" placeholder="Email" autocomplete="off" />
         <input type="text" id="password" placeholder="Password" autocomplete="off" />
-        <input type="text" id="confirmPassword" placeholder="Type Password again" autocomplete="off" />
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
         <br />
         <span id="returnMessage"></span>
       </form>
@@ -17,14 +14,14 @@
 
 <script>
 export default {
-  name: "Registration",
+  name: "Login",
   props: {
     msg: String
   }
 };
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+
+<style>
 .login-page {
   width: 30%;
   padding: 5% 0 0;
