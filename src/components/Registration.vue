@@ -2,7 +2,7 @@
   <div class="login-page">
     <div class="form">
       <form class="register-form">
-        <input type="text" id="firstname" placeholder="Firstname" autocomplete="off" />
+        <input type="text" id="firstname" required v-model="input.firstname" placeholder="Firstname" autocomplete="off" />
         <input type="text" id="lastname" placeholder="Lastname" autocomplete="off" />
         <input type="text" id="email" placeholder="Email" autocomplete="off" />
         <input type="text" id="password" placeholder="Password" autocomplete="off" />
@@ -20,55 +20,17 @@ export default {
   name: "Registration",
   props: {
     msg: String
+  },
+  data() {
+    return {
+      input: {
+        firstname:"",
+      },
+      response:""
+    };
   }
 };
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.login-page {
-  width: 30%;
-  padding: 5% 0 0;
-  margin: auto;
-}
 
-.form {
-  position: relative;
-  z-index: 1;
-  background: rgba(10, 50, 100, 0.35);
-  max-width: 70%;
-  margin: 0 auto 10%;
-  padding: 10%;
-  text-align: center;
-}
-
-.form input {
-  font-family: Arial, Helvetica, sans-serif;
-  outline: 1;
-  background: #f2f2f2;
-  width: 70%;
-  border: 0;
-  margin: 3%;
-  padding: 5%;
-  box-sizing: content-box;
-  font-size: 90%;
-}
-
-.form button {
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #048000;
-  width: 35%;
-  border: 0;
-  margin: 3%;
-  padding: 5%;
-  color: #ffffff;
-  font-size: 90%;
-  cursor: pointer;
-}
-
-.form button:hover,
-.form button:active {
-  background-color: rgba(10, 50, 100, 0.35);
-}
+<style scoped src="@/css/Form.css">
 </style>
