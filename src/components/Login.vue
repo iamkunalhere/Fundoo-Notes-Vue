@@ -9,11 +9,9 @@
   <div class="login-page">
     <div class="form">
       <form class="login-form">
-        <input type="text" id="email" required v-model="input.email" placeholder="Email" autocomplete="off" />
-        <input type="text" id="password" required v-model="input.password" placeholder="Password" autocomplete="off" />
-        <button type="submit" v-on:click="loginUser()">Login</button>
-        <br />
-        <span id="returnMessage"></span>
+        <v-text-field label="Email" required v-model="email"></v-text-field>
+        <v-text-field label="Password" required v-model="password"></v-text-field>
+        <v-btn type="submit" v-on:click="loginUser()">Login</v-btn>
       </form>
     </div>
   </div>
@@ -39,13 +37,10 @@ export default {
   methods: {
     loginUser: function() {
       axios
-        .post(
-          `http://fundoonotes.incubation.bridgelabz.com/api/user/login`,
-         {
-              email: this.input.email,
-              password: this.input.password
-          }
-        )
+        .post(`http://fundoonotes.incubation.bridgelabz.com/api/user/login`, {
+          email: this.email,
+          password: this.password
+        })
         .then(function(response) {
           console.log(response);
         })
@@ -57,5 +52,4 @@ export default {
 };
 </script>
 
-<style scoped src="@/css/Form.css">
-</style>
+<style scoped src="@/css/Form.css"></style>

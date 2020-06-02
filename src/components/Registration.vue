@@ -9,27 +9,12 @@
   <div class="login-page">
     <div class="form">
       <form class="register-form">
-        <input
-          type="text"
-          id="firstName"
-          required
-          v-model="input.firstName"
-          placeholder="Firstname"
-          autocomplete="off"
-        />
-        <input type="text" id="lastName" required v-model="input.lastName" placeholder="Lastname" autocomplete="off" />
-        <input type="text" id="email" v-model="input.email" placeholder="Email" autocomplete="off" />
-        <input type="text" id="password" required v-model="input.password" placeholder="Password" autocomplete="off" />
-        <input
-          type="text"
-          id="confirmPassword"
-          required
-          placeholder="Type Password again"
-          autocomplete="off"
-        />
-        <button type="submit" v-on:click="registerUser()">Register</button>
-        <br />
-        <span id="returnMessage"></span>
+        <v-text-field label="Firstname" required v-model="firstName"></v-text-field>
+        <v-text-field label="Lastname" required v-model="lastName"></v-text-field>
+        <v-text-field label="Email" required v-model="email"></v-text-field>
+        <v-text-field label="Password" required v-model="password"></v-text-field>
+        <v-text-field label="Confirm Password" required></v-text-field>
+        <v-btn type="submit" v-on:click="registerUser()">Register</v-btn>
       </form>
     </div>
   </div>
@@ -59,12 +44,12 @@ export default {
       axios
         .post(
           `http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp`,
-         {
-              firstName: this.input.firstName,
-              lastName: this.input.lastName,
-              email: this.input.email,
-              password: this.input.password,
-              service: "service"
+          {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            password: this.password,
+            service: "service"
           }
         )
         .then(function(response) {
@@ -78,5 +63,4 @@ export default {
 };
 </script>
 
-<style scoped src="@/css/Form.css">
-</style>
+<style scoped src="@/css/Form.css"></style>
