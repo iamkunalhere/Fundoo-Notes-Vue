@@ -8,17 +8,19 @@
 <template>
   <div class="login-page">
     <div class="form">
+      <h2 style="color:green;">Fundoo Login</h2>
       <form class="login-form">
-        <v-text-field label="Email" required v-model="email"></v-text-field>
-        <v-text-field label="Password" required v-model="password"></v-text-field>
+        <v-text-field label="Email" required v-mod el="email" autocomplete="off"></v-text-field>
+        <v-text-field label="Password" required v-model="password" autocomplete="off"></v-text-field>
         <v-btn type="submit" v-on:click="loginUser()">Login</v-btn>
       </form>
+      <router-link to="/forgetPassword">Forgot Password</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import api from "../service/userService";
 
 export default {
   name: "Login",
@@ -36,17 +38,7 @@ export default {
   },
   methods: {
     loginUser: function() {
-      axios
-        .post(`http://fundoonotes.incubation.bridgelabz.com/api/user/login`, {
-          email: this.email,
-          password: this.password
-        })
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
+      api.methods.loginUser(this.email, this.password);
     }
   }
 };
