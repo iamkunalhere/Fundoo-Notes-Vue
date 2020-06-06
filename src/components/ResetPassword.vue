@@ -1,15 +1,15 @@
 <template>
   <div class="login-page">
     <div class="form">
-      <h2 style="color:green;">Enter Email</h2>
+      <h2 style="color:green;">Reset Password</h2>
       <form class="login-form">
         <v-text-field
-          label="Email"
+          label="Enter new Password"
           required
-          v-model="email"
+          v-model="password"
           autocomplete="off"
         ></v-text-field>
-        <v-btn type="submit" v-on:click="forgetPassword()">submit</v-btn>
+        <v-btn type="submit" v-on:click="resetPassword()">submit</v-btn>
       </form>
       <router-link to="/login">Back to Login</router-link>
     </div>
@@ -20,21 +20,21 @@
 import api from "../service/userService";
 
 export default {
-  name: "ForgetPassword",
+  name: "ResetPassword",
   props: {
     msg: String
   },
   data() {
     return {
       input: {
-        email: ""
+        password: ""
       },
       response: ""
     };
   },
   methods: {
-    forgetPassword: function() {
-      api.methods.forgetPassword(this.email);
+    resetPassword: function() {
+      api.methods.resetPassword(this.password, this.$route.params.token);
     }
   }
 };

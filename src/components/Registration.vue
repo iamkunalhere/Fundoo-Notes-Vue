@@ -8,7 +8,7 @@
 <template>
   <div class="login-page">
     <div class="form">
-      <h2 style="color:green;">Fundoo Registaration</h2>
+      <h2 class="display-4" style="color:green;">Fundoo Registration</h2>
       <form class="register-form">
         <v-text-field label="Firstname" required v-model="firstName" autocomplete="off"></v-text-field>
         <v-text-field label="Lastname" required v-model="lastName" autocomplete="off"></v-text-field>
