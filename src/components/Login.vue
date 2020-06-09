@@ -12,10 +12,10 @@
         <h2 style="color:green;">Fundoo Login</h2>
         <form class="login-form">
           <v-text-field label="Email" required v-model="email" autocomplete="off"></v-text-field>
-          <v-text-field label="Password" required v-model="password" autocomplete="off"></v-text-field>
+          <v-text-field type="password" label="Password" required v-model="password" autocomplete="off"></v-text-field>
           <div>
-            <v-btn type="submit" v-on:click="loginUser()">Login</v-btn>
             <router-link to="/forgetPassword">Forgot Password?</router-link>
+            <v-btn type="button" v-on:click="loginUser()">Login</v-btn>
           </div>
           <br />
           <div>
@@ -48,10 +48,17 @@ export default {
     };
   },
   methods: {
-    loginUser: function() {
-      api.methods.loginUser(this.email, this.password);
-    }
-  }
+     loginUser: function() {
+       const loginInfo = {
+         email : this.email,
+         password: this.password
+       }
+       console.log(loginInfo);
+      api.methods.loginUser(loginInfo);
+      alert("login successful");
+      this.$router.push("/navbar");
+     }
+    },
 };
 </script>
 

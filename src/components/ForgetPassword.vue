@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div class="login-page">
     <div class="form">
       <h2 style="color:green;">Enter Email</h2>
@@ -9,11 +10,14 @@
           v-model="email"
           autocomplete="off"
         ></v-text-field>
-        <v-btn type="submit" v-on:click="forgetPassword()">submit</v-btn>
-      </form>
-      <router-link to="/login">Back to Login</router-link>
+        <div>
+        <router-link to="/">Back to Login</router-link>
+        <v-btn type="button" v-on:click="forgetPassword()">submit</v-btn>
+        </div>
+      </form>  
     </div>
   </div>
+  </v-app>
 </template>
 
 <script>

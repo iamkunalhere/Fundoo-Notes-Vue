@@ -1,4 +1,5 @@
 <template>
+<v-app>
   <div class="login-page">
     <div class="form">
       <h2 style="color:green;">Reset Password</h2>
@@ -9,11 +10,12 @@
           v-model="password"
           autocomplete="off"
         ></v-text-field>
-        <v-btn type="submit" v-on:click="resetPassword()">submit</v-btn>
+        <router-link to="/">Back to Login</router-link>
+        <v-btn type="button" v-on:click="resetPassword()">submit</v-btn>
       </form>
-      <router-link to="/login">Back to Login</router-link>
     </div>
   </div>
+  </v-app>
 </template>
 
 <script>
@@ -34,7 +36,12 @@ export default {
   },
   methods: {
     resetPassword: function() {
-      api.methods.resetPassword(this.password, this.$route.params.token);
+      const credentials = {
+        newPassword : this.password
+      };
+      const token = this.$route.params.token;
+      console.log(token);
+      api.methods.resetPassword(credentials, token);
     }
   }
 };

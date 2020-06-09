@@ -1,39 +1,37 @@
 import axios from "axios";
 
+const url = `http://fundoonotes.incubation.bridgelabz.com/api`;
+
 export default {
   methods: {
     registerUser: function(data) {
+      console.log(data,"data of register");
       axios
         .post(
-          `http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp`,
+          url + `/user/userSignUp`,
           data
         )
         .then(function(response) {
-          console.log(response);
+          console.log(response.data);
         })
         .catch(e => {
           this.errors.push(e);
         });
     },
-    loginUser: function(userEmail, userPassword) {
+    loginUser(loginInfo) {
+      console.log(loginInfo)
       axios
-        .post(`http://fundoonotes.incubation.bridgelabz.com/api/user/login`, {
-          email: userEmail,
-          password: userPassword
+        .post(url + `/user/login`,loginInfo)
+        .then(function(response) { 
+           console.log(response);
         })
-        .then(function(response) {
-          const token = response.data.id;
-          localStorage.setItem("token", token);
-          console.log(response);
-          console.log(token);
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
+         .catch(e => {
+           console.log(e);
+         });
     },
     forgetPassword: function(userEmail) {
       axios
-        .post(`http://fundoonotes.incubation.bridgelabz.com/api/user/reset`, {
+        .post(url + `/user/reset`, {
           email: userEmail
         })
         .then(function(response) {
@@ -44,16 +42,17 @@ export default {
         });
     },
     resetPassword: function(newPassword, token) {
+      console.log(newPassword);
       axios
         .post(
-          `http://fundoonotes.incubation.bridgelabz.com/api/user/reset-password?access_token=${token}`,
-          { newPassword: newPassword }
+          url + `/user/reset-password?access_token=${token}`,
+          newPassword
         )
         .then(function(response) {
           console.log(response);
         })
         .catch(e => {
-          this.errors.push(e);
+          console.log(e);
         });
     }
   }

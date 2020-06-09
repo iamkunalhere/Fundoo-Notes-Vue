@@ -6,19 +6,26 @@
 @since: 27/05/2020- Wednesday
 -->
 <template>
+<v-app>
+  
   <div class="login-page">
+    
     <div class="form">
-      <h2 class="display-4" style="color:green;">Fundoo Registration</h2>
-      <form class="register-form">
+      
+      <h2 style="color:green;">Fundoo Registration</h2> 
+      <form>
         <v-text-field label="Firstname" required v-model="firstName" autocomplete="off"></v-text-field>
         <v-text-field label="Lastname" required v-model="lastName" autocomplete="off"></v-text-field>
         <v-text-field label="Email" required v-model="email" autocomplete="off"></v-text-field>
         <v-text-field label="Password" required v-model="password" autocomplete="off"></v-text-field>
         <v-text-field label="Confirm Password" required autocomplete="off"></v-text-field>
-        <v-btn type="submit" v-on:click="registerNewUser()">Register</v-btn>
+        <router-link to="/">Login Now</router-link>
+        <v-btn type="button" v-on:click="registerNewUser()">Register</v-btn>        
       </form>
-    </div>
+      
+    </div>    
   </div>
+  </v-app>
 </template>
 
 <script>
@@ -41,6 +48,7 @@ export default {
   },
   methods: {
     registerNewUser: function() {
+      console.log("inside register function");
       api.methods.registerUser({
         firstName: this.firstName,
         lastName: this.lastName,
