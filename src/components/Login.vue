@@ -49,16 +49,23 @@ export default {
   },
   methods: {
      loginUser: function() {
-       const loginInfo = {
+       try {
+         const loginInfo = {
          email : this.email,
          password: this.password
        }
-       console.log(loginInfo);
-      api.methods.loginUser(loginInfo);
-      alert("login successful");
-      this.$router.push("/navbar");
-     }
-    },
+      console.log(loginInfo);
+      const response = api.methods.loginUser(loginInfo);
+      console.log(response.status);
+      if(response.status == 200) {
+        alert("login successful");
+        this.$router.push("/navbar");
+      }
+      } catch (error) {
+         console.log(error);
+      }
+    }
+  }
 };
 </script>
 

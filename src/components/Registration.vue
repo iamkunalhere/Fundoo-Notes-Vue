@@ -48,13 +48,18 @@ export default {
   },
   methods: {
     registerNewUser: function() {
-      console.log("inside register function");
-      api.methods.registerUser({
+      const userDetails = {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         password: this.password,
         service: "service"
+      };
+      const request = api.methods.registerUser(userDetails);
+      console.log(request.statusCode);
+      fetch(request)
+      .then(function(response) {
+       console.log(response.status)
       });
     }
   }

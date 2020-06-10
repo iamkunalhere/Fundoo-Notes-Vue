@@ -5,29 +5,25 @@ const url = `http://fundoonotes.incubation.bridgelabz.com/api`;
 export default {
   methods: {
     registerUser: function(data) {
-      console.log(data,"data of register");
-      axios
+      return axios
         .post(
           url + `/user/userSignUp`,
           data
         )
-        .then(function(response) {
-          console.log(response.data);
-        })
         .catch(e => {
-          this.errors.push(e);
+          console.log(e);
         });
     },
     loginUser(loginInfo) {
       console.log(loginInfo)
-      axios
-        .post(url + `/user/login`,loginInfo)
-        .then(function(response) { 
-           console.log(response);
+      return axios
+        .post(url + `/user/login`,
+          loginInfo
+        )
+        .then(response => response.status)
+        .catch(e => {
+          console.log(e);
         })
-         .catch(e => {
-           console.log(e);
-         });
     },
     forgetPassword: function(userEmail) {
       axios
