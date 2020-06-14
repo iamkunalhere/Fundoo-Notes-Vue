@@ -1,6 +1,7 @@
 <template>
 <v-app>
   <div class="login-page">
+    <v-card>
     <div class="form">
       <h2 style="color:green;">Enter Email</h2>
       <form class="login-form">
@@ -16,6 +17,7 @@
         </div>
       </form>  
     </div>
+    </v-card>
   </div>
   </v-app>
 </template>

@@ -8,11 +8,23 @@
 <template>
   <v-app>
     <div class="login-page">
+      <v-card>
       <div class="form">
         <h2 style="color:green;">Fundoo Login</h2>
         <form class="login-form">
-          <v-text-field label="Email" required v-model="email" autocomplete="off"></v-text-field>
-          <v-text-field type="password" label="Password" required v-model="password" autocomplete="off"></v-text-field>
+          <v-text-field
+            label="Email"
+            required
+            v-model="email"
+            autocomplete="off"
+          ></v-text-field>
+          <v-text-field
+            type="password"
+            label="Password"
+            required
+            v-model="password"
+            autocomplete="off"
+          ></v-text-field>
           <div>
             <router-link to="/forgetPassword">Forgot Password?</router-link>
             <v-btn type="button" v-on:click="loginUser()">Login</v-btn>
@@ -26,6 +38,7 @@
           </div>
         </form>
       </div>
+      </v-card>
     </div>
   </v-app>
 </template>
@@ -36,34 +49,35 @@ import api from "../service/userService";
 export default {
   name: "Login",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
       input: {
         email: "",
-        password: ""
+        password: "",
       },
-      response: ""
+      response: "",
     };
   },
   methods: {
-     loginUser: function() {
-       try {
-         const loginInfo = {
-         email : this.email,
-         password: this.password
-       }
-      console.log(loginInfo);
-      const response = api.methods.loginUser(loginInfo);
-      console.log(response.status);
-      if(response.status == 200) {
-        alert("login successful");
-        this.$router.push("/navbar");
-      }
-      } catch (error) {
-         console.log(error);
-      }
+    loginUser: function() {
+          const loginInfo = {
+          email: this.email,
+          password: this.password,
+        };
+        console.log(loginInfo);
+        api.methods.loginUser(loginInfo)
+        .then(response => {
+          if(response.status == 200) {
+            localStorage.setItem("token",response.data.id);
+            alert("login successful");
+            this.$router.push("/navbar");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

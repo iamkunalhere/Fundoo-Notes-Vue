@@ -5,24 +5,28 @@ const url = `http://fundoonotes.incubation.bridgelabz.com/api`;
 export default {
   methods: {
     registerUser: function(data) {
-      return axios
+      axios
         .post(
           url + `/user/userSignUp`,
           data
         )
+        .then(response => {
+          console.log(response);
+        })
         .catch(e => {
           console.log(e);
         });
     },
     loginUser(loginInfo) {
-      console.log(loginInfo)
       return axios
         .post(url + `/user/login`,
           loginInfo
         )
-        .then(response => response.status)
-        .catch(e => {
-          console.log(e);
+        .then(response => { 
+          return response;
+        })
+        .catch(error => {
+          return error;
         })
     },
     forgetPassword: function(userEmail) {
@@ -30,11 +34,11 @@ export default {
         .post(url + `/user/reset`, {
           email: userEmail
         })
-        .then(function(response) {
+        .then(response => {
           console.log(response);
         })
-        .catch(e => {
-          this.errors.push(e);
+        .catch(error => {
+          console.log(error);
         });
     },
     resetPassword: function(newPassword, token) {
@@ -44,11 +48,11 @@ export default {
           url + `/user/reset-password?access_token=${token}`,
           newPassword
         )
-        .then(function(response) {
+        .then(response => {
           console.log(response);
         })
-        .catch(e => {
-          console.log(e);
+        .catch(error => {
+          console.log(error);
         });
     }
   }

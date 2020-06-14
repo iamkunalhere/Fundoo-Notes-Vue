@@ -9,7 +9,7 @@
 <v-app>
   
   <div class="login-page">
-    
+    <v-card>
     <div class="form">
       
       <h2 style="color:green;">Fundoo Registration</h2> 
@@ -23,7 +23,8 @@
         <v-btn type="button" v-on:click="registerNewUser()">Register</v-btn>        
       </form>
       
-    </div>    
+    </div>  
+    </v-card>  
   </div>
   </v-app>
 </template>
@@ -55,12 +56,7 @@ export default {
         password: this.password,
         service: "service"
       };
-      const request = api.methods.registerUser(userDetails);
-      console.log(request.statusCode);
-      fetch(request)
-      .then(function(response) {
-       console.log(response.status)
-      });
+      api.methods.registerUser(userDetails);
     }
   }
 };

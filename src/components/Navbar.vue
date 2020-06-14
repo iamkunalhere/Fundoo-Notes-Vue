@@ -7,15 +7,15 @@
       <span class="font-weight-light">Fundoo</span><span>Notes</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon>mdi-magnify</v-icon>
       <v-text-field
+        prepend-icon="mdi-magnify"
         class="mx-4"
         flat
         hide-details
         label="Search"
-        solo-inverted
         autocomplete="off"
-      ></v-text-field>
+      >
+      </v-text-field>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-cart</v-icon>
@@ -24,15 +24,30 @@
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-      <v-btn icon>
+      <v-btn @click="userLogout()" icon>
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
       </v-toolbar>
-      
+
+    <div class="createNote">
+      <v-card>
+      <v-card-title>
+          <v-text-field placeholder="Title" solo flat>
+          </v-text-field>
+      </v-card-title>
+      <v-card-text>
+        <v-textarea
+          solo
+          label="Take a note..."
+        ></v-textarea>
+      </v-card-text>
+      </v-card>
+    </div> 
+
       <v-navigation-drawer floating v-model="drawer">
         <v-list nav dense>
          <v-list-item-group v-model="link" color="primary">
-          <v-list-item v-for="(link, i) in links" :key="i">
+          <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
            <v-list-item-icon>
             <v-icon v-text="link.icon"></v-icon>
            </v-list-item-icon>
@@ -44,11 +59,14 @@
     </v-list>
       </v-navigation-drawer>
   </nav>
+  
+  
 </v-app>
 </template>
 
 <script>
 export default {
+
 name: "Navbar",
   props: {
     msg: String
@@ -58,7 +76,7 @@ name: "Navbar",
     drawer:false,
     link: 0,
     links: [
-        { text: 'Note', icon: 'mdi-note' },
+        { text: 'Note', icon: 'mdi-note', route: '/navbar/createNote' },
         { text: 'Reminder', icon: 'mdi-alert' },
         { text: 'Label', icon: 'mdi-label' },
         { text: 'Archive', icon: 'mdi-archive' },
@@ -69,6 +87,9 @@ name: "Navbar",
 };
 </script>
 
-<style>
-
+<style scoped>
+.createNote {
+    display: flex;
+    justify-content: center;
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
 <v-app>
   <div class="login-page">
+    <v-card>
     <div class="form">
       <h2 style="color:green;">Reset Password</h2>
       <form class="login-form">
@@ -14,6 +15,7 @@
         <v-btn type="button" v-on:click="resetPassword()">submit</v-btn>
       </form>
     </div>
+    </v-card>
   </div>
   </v-app>
 </template>
