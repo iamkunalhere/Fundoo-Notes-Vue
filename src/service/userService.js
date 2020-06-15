@@ -29,6 +29,16 @@ export default {
           return error;
         })
     },
+    logoutUser(token) {
+      return axios
+        .post(url + `/user/logout?access_token=${token}`)
+        .then(response => { 
+          return response;
+        })
+        .catch(error => {
+          return error;
+        })
+    },
     forgetPassword: function(userEmail) {
       axios
         .post(url + `/user/reset`, {
