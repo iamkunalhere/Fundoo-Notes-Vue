@@ -57,18 +57,20 @@
           </v-flex>
 
           <v-card width=510 height="50" v-show="isdisplay" @click="openCard()">    
-              <v-text-field flat placeholder="Create a Note..." solo append-icon="mdi-pin" > </v-text-field>
+              <v-text-field flat placeholder="Create a Note..." solo > </v-text-field>
           </v-card>
           <v-card width=510 v-show="!isdisplay">    
               <v-textarea flat solo 
               rows="1"
               row-height="10"
-              label="Title" auto-grow></v-textarea>
+              label="Title" auto-grow
+              v-model="title"></v-textarea>
         
               <v-textarea flat solo 
               rows="1"
               row-height="10"
-              label="Note detail..." auto-grow></v-textarea>
+              label="Note detail..." auto-grow
+              v-model="discription"></v-textarea>
               <v-card-actions>
                 <v-btn text>
               <v-icon>mdi-gesture-tap</v-icon>
@@ -120,6 +122,8 @@ export default {
         { text: "Archive", icon: "mdi-package-down" },
         { text: "Trash", icon: "mdi-delete" },
       ],
+      title:"",
+      discription:""
     };
   },
   methods: {
@@ -143,6 +147,20 @@ export default {
     },
     closeCard() {
       this.isdisplay = true;
+      const newNote ={
+        title: this.title,
+        description: this.discription
+      }
+      const token = localStorage.getItem("token");
+      api.methods.addNote(newNote,token)
+        .then(response => {
+          if(response.status == 200) {
+            alert("Note added successful");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
     }
   }

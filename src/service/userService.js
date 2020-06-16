@@ -64,6 +64,17 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+    addNote(noteDetail,token) {
+      return axios
+        .post(url + `/notes/addNotes?access_token=${token}`,
+        noteDetail)
+        .then(response => { 
+          return response;
+        })
+        .catch(error => {
+          return error;
+        })
+    },
   }
 };
