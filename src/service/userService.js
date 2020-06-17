@@ -76,5 +76,15 @@ export default {
           return error;
         })
     },
+    getAllNotes(token) {
+      return axios
+        .get(url + `/notes/getNotesList?access_token=${token}`)
+        .then(response => { 
+          return response.data;
+        })
+        .catch(error => {
+          return error;
+        })
+    }
   }
 };

@@ -27,8 +27,8 @@
         <v-btn icon>
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
-        <v-btn @click="userLogout()" text
-          >Logout
+        <v-btn @click="userLogout()" text>
+          Logout
         </v-btn>
       </v-toolbar>
 
@@ -56,55 +56,18 @@
             </v-navigation-drawer>
           </v-flex>
 
-          <v-card width=510 height="50" v-show="isdisplay" @click="openCard()">    
-              <v-text-field flat placeholder="Create a Note..." solo > </v-text-field>
-          </v-card>
-          <v-card width=510 v-show="!isdisplay">    
-              <v-textarea flat solo 
-              rows="1"
-              row-height="10"
-              label="Title" auto-grow
-              v-model="title"></v-textarea>
-        
-              <v-textarea flat solo 
-              rows="1"
-              row-height="10"
-              label="Note detail..." auto-grow
-              v-model="discription"></v-textarea>
-              <v-card-actions>
-                <v-btn text>
-              <v-icon>mdi-gesture-tap</v-icon>
-              </v-btn>
-              <v-btn text>
-              <v-icon>mdi-account-plus</v-icon>
-              </v-btn>
-              <v-btn text>
-              <v-icon>mdi-palette</v-icon>
-              </v-btn>
-              <v-btn text>
-              <v-icon>mdi-image-area</v-icon>
-              </v-btn>
-              <v-btn text>
-              <v-icon>mdi-package-down</v-icon>
-              </v-btn>
-              <v-btn text>
-              <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-              <v-spacer></v-spacer>
-              <v-btn text @click="closeCard()">close</v-btn>
-              </v-card-actions>
-              
-          </v-card>
+          <router-view></router-view>
           
         </v-layout>
       </v-container>
+      
     </nav>
+    
   </v-app>
 </template>
 
 <script>
 import api from "../service/userService";
-
 export default {
   name: "Navbar",
   props: {
@@ -113,18 +76,15 @@ export default {
   data() {
     return {
       drawer: false,
-      isdisplay: true,
       link: 0,
       links: [
-        { text: "Notes", icon: "mdi-lightbulb" },
-        { text: "Reminder", icon: "mdi-gesture-tap" },
+        { text: "Notes", icon: "mdi-lightbulb", route: "createnote"},
+        { text: "Reminder", icon: "mdi-gesture-tap", route: "shownotes"},
         { text: "Label", icon: "mdi-pencil" },
         { text: "Archive", icon: "mdi-package-down" },
         { text: "Trash", icon: "mdi-delete" },
       ],
-      title:"",
-      discription:""
-    };
+    }
   },
   methods: {
     userLogout() {
@@ -141,27 +101,6 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    },
-    openCard() {
-      this.isdisplay = false;
-    },
-    closeCard() {
-      this.isdisplay = true;
-      const newNote ={
-        title: this.title,
-        description: this.discription
-      }
-      const token = localStorage.getItem("token");
-      api.methods.addNote(newNote,token)
-        .then(response => {
-          if(response.status == 200) {
-            alert("Note added successful");
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
     }
   }
 };

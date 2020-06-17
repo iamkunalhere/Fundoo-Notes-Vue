@@ -54,7 +54,7 @@ export default {
         lastName: this.lastName,
         email: this.email,
         password: this.password,
-        service: "service"
+        service: "advance"
       };
       api.methods.registerUser(userDetails);
     }
