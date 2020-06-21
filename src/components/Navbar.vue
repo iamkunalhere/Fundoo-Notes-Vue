@@ -123,7 +123,7 @@ export default {
         { heading: "Labels" },
         { text: "Label", icon: "mdi-pencil" },
         { divider: true },
-        { text: "Archive", icon: "mdi-package-down" },
+        { text: "Archive", icon: "mdi-package-down", route: "archivenotes" },
         { text: "Trash", icon: "mdi-delete", route: "trashnotes" },
       ],
     };

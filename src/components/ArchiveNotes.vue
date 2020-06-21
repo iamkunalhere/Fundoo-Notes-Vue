@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card width="350" v-for="items in allNotes" :key="items.id">
+    <v-card width="350" v-for="items in archiveNotes" :key="items.id">
       <v-textarea
         flat
         solo
@@ -29,8 +29,8 @@
         <v-btn small text>
           <v-icon>mdi-image-area</v-icon>
         </v-btn>
-        <v-btn @click="archiveNote(items.id)" small text>
-          <v-icon>mdi-package-down</v-icon>
+        <v-btn small text>
+          <v-icon>mdi-package-up</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
         <div class="text-center">
@@ -54,21 +54,21 @@
 <script>
 import api from "../service/userService";
 export default {
-  name: "ShowNotes",
+  name: "ArchiveNotes",
   data() {
     return {
-      allNotes: [],
+      archiveNotes: [],
     };
   },
   methods: {
-    getAllNotes() {
+    getArchiveNotes() {
       const token = localStorage.getItem("token");
       api.methods
-        .getAllNotes(token)
+        .getArchiveNotes(token)
         .then((response) => {
           console.log(response.data.data);
           const noteDetails = response.data.data;
-          this.allNotes = noteDetails;
+          this.archiveNotes = noteDetails;
         })
         .catch((error) => {
           console.log(error);
@@ -89,24 +89,9 @@ export default {
           console.log(error);
         });
     },
-    archiveNote(id) {
-      const noteDetails = {
-        noteIdList: [id],
-        isArchived: true,
-      };
-      const token = localStorage.getItem("token");
-      api.methods
-        .archiveNote(noteDetails, token)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
   },
   mounted() {
-    this.getAllNotes();
+    this.getArchiveNotes();
   },
 };
 </script>

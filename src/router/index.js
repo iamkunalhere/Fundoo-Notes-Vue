@@ -8,6 +8,7 @@ import Navbar from "../components/Navbar";
 import CreateNote from "../components/CreateNote";
 import ShowNotes from "../components/ShowNotes";
 import TrashNotes from "../components/TrashNotes";
+import ArchiveNotes from "../components/ArchiveNotes";
 
 Vue.use(VueRouter);
 
@@ -51,7 +52,12 @@ const routes = [
         path: "/trashnotes",
         name: "TrashNotes",
         component: TrashNotes,
-      }
+      },
+      {
+        path: "/archivenotes",
+        name: "ArchiveNotes",
+        component: ArchiveNotes,
+      },
     ],
   },
 ];

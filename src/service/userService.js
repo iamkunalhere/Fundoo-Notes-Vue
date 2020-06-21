@@ -90,5 +90,23 @@ export default {
           return error;
         });
     },
+    archiveNote(noteDetail,token) {
+      return axios
+        .post(url + `/notes/archiveNotes?access_token=${token}`, noteDetail)
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          return error;
+        });
+    },
+    getArchiveNotes(token) {
+      return axios
+        .get(url + `/notes/getArchiveNotesList?access_token=${token}`)
+        .then((response) => response.data)
+        .catch((error) => {
+          return error;
+        });
+    },
   },
 };
