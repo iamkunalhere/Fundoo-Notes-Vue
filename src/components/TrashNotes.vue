@@ -43,7 +43,7 @@
 <script>
 import api from "../service/userService";
 export default {
-  name: "ShowNotes",
+  name: "TrashNotes",
   data() {
     return {
       allNotes: [],

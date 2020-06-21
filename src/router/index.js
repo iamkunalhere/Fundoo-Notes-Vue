@@ -7,6 +7,7 @@ import ResetPassword from "../components/ResetPassword";
 import Navbar from "../components/Navbar";
 import CreateNote from "../components/CreateNote";
 import ShowNotes from "../components/ShowNotes";
+import TrashNotes from "../components/TrashNotes";
 
 Vue.use(VueRouter);
 
@@ -14,22 +15,22 @@ const routes = [
   {
     path: "/",
     name: "Login",
-    component: Login
+    component: Login,
   },
   {
     path: "/registration",
     name: "Registration",
-    component: Registration
+    component: Registration,
   },
   {
     path: "/forgetPassword",
     name: "ForgetPassword",
-    component: ForgetPassword
+    component: ForgetPassword,
   },
   {
     path: "/resetpassword/:token",
     name: "ResetPassword",
-    component: ResetPassword
+    component: ResetPassword,
   },
   {
     path: "/navbar",
@@ -39,20 +40,25 @@ const routes = [
       {
         path: "/createnote",
         name: "CreateNote",
-        component: CreateNote
+        component: CreateNote,
       },
       {
         path: "/shownotes",
         name: "ShowNotes",
-        component: ShowNotes
+        component: ShowNotes,
+      },
+      {
+        path: "/trashnotes",
+        name: "TrashNotes",
+        component: TrashNotes,
       }
-    ]
-  }
+    ],
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
-  routes
+  routes,
 });
 
 export default router;

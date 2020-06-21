@@ -40,6 +40,8 @@
       </div>
       </v-card>
     </div>
+    <v-snackbar v-model="emptyFieldSnackbar">{{ emptyfieldtext }}</v-snackbar>
+    <v-snackbar v-model="failureSnackbar">{{ failuretext }}</v-snackbar>
   </v-app>
 </template>
 
@@ -57,7 +59,10 @@ export default {
         email: "",
         password: "",
       },
-      response: "",
+      emptyFieldSnackbar: false,
+      failureSnackbar: false,
+      emptyfieldtext: "Email or Password can't be empty...!",
+      failuretext: "Invalid Details...!",
     };
   },
   methods: {
@@ -66,19 +71,25 @@ export default {
           email: this.email,
           password: this.password,
         };
-        console.log(loginInfo);
-        api.methods.loginUser(loginInfo)
-        .then(response => {
-          if(response.status == 200) {
-            localStorage.setItem("token",response.data.id);
-            alert("login successful");
-            this.$router.push("/navbar");
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+        if(this.email == null || this.password == null) {
+          this.emptyFieldSnackbar = true;
+        }
+        else {
+          api.methods.loginUser(loginInfo)
+          .then(response => {
+            if(response.status == 200) {
+              localStorage.setItem("token",response.data.id);
+              localStorage.setItem("email",response.data.email);
+              this.$router.push("/navbar");
+            }
+          })
+          .catch(error => {
+            if(error) {
+              this.failureSnackbar = true;
+            }
+          });
+        }      
+    } 
   }
 };
 </script>
