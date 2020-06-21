@@ -62,5 +62,33 @@ export default {
           return error;
         });
     },
+    deleteNote(noteDetail,token) {
+      return axios
+        .post(url + `/notes/trashNotes?access_token=${token}`, noteDetail)
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          return error;
+        });
+    },
+    getTrashNotes(token) {
+      return axios
+        .get(url + `/notes/getTrashNotesList?access_token=${token}`)
+        .then((response) => response.data)
+        .catch((error) => {
+          return error;
+        });
+    },
+    deleteNoteForever(noteDetail,token) {
+      return axios
+        .post(url + `/notes/deleteForeverNotes?access_token=${token}`, noteDetail)
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          return error;
+        });
+    },
   },
 };

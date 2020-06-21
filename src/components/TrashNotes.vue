@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card width="510" v-for="items in allNotes" :key="items.id">
+    <v-card width="350" v-for="items in trashNotes" :key="items.id">
       <v-textarea
         flat
         solo
@@ -17,25 +17,13 @@
         auto-grow
       ></v-textarea>
       <v-card-actions>
-        <v-btn text>
-          <v-icon>mdi-gesture-tap</v-icon>
+        <v-btn @click="deletePermanent(items.id)" text>
+          <v-icon>mdi-delete-forever</v-icon>
         </v-btn>
-        <v-btn text>
-          <v-icon>mdi-account-plus</v-icon>
+        <v-btn @click="restore()" text>
+          <v-icon>mdi-delete-restore</v-icon>
         </v-btn>
-        <v-btn text>
-          <v-icon>mdi-palette</v-icon>
-        </v-btn>
-        <v-btn text>
-          <v-icon>mdi-image-area</v-icon>
-        </v-btn>
-        <v-btn text>
-          <v-icon>mdi-package-down</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn text>
-          <v-icon >mdi-dots-vertical</v-icon>
-        </v-btn>
+        
       </v-card-actions>
     </v-card>
   </div>
@@ -46,18 +34,33 @@ export default {
   name: "TrashNotes",
   data() {
     return {
-      allNotes: [],
+      trashNotes: [],
     };
   },
   methods: {
-    getAllNotes() {
+    getTrashNotes() {
       const token = localStorage.getItem("token");
       api.methods
-        .getAllNotes(token)
+        .getTrashNotes(token)
         .then((response) => {
           console.log(response.data.data);
           const noteDetails = response.data.data;
-          this.allNotes = noteDetails;
+          this.trashNotes = noteDetails;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    deletePermanent(id) {
+      const noteDetails = {
+        noteIdList: [id],
+        isDeleted: true,
+      };
+      const token = localStorage.getItem("token");
+      api.methods
+        .deleteNoteForever(noteDetails,token)
+        .then((response) => {
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -65,7 +68,7 @@ export default {
     },
   },
   mounted() {
-    this.getAllNotes();
+    this.getTrashNotes();
   },
 };
 </script>

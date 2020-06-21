@@ -7,7 +7,7 @@
           align="center"
           justify="center"
         >
-          <v-col cols="6">
+          <v-col cols="8">
 
             
     <v-card width="510" height="50" v-show="isdisplay" @click="openCard()">
@@ -119,10 +119,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin: 1%;
-}
-.notesContainer {
-  margin: 4%;
-}
+
+
 </style>

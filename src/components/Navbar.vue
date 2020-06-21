@@ -92,7 +92,10 @@
 
     <v-main>
       <v-container fluid>
-        <router-view></router-view>
+        <div class="container">
+          <router-view></router-view>
+        </div>
+        
       </v-container>
     </v-main>
   </v-app>
@@ -133,7 +136,6 @@ export default {
         .then((response) => {
           console.log(response);
           if (response.status == 204) {
-            alert("logout successful");
             this.$router.push("/");
           }
         })
@@ -145,4 +147,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  margin: 4%;
+}
+</style>
