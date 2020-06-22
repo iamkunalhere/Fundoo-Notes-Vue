@@ -39,6 +39,11 @@ const routes = [
     component: Navbar,
     children: [
       {
+        path: "",
+        name: "CreateNote",
+        component: CreateNote,
+      },
+      {
         path: "/createnote",
         name: "CreateNote",
         component: CreateNote,

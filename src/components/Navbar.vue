@@ -90,14 +90,9 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main>
-      <v-container fluid>
-        <div class="container">
-          <router-view></router-view>
-        </div>
-        
-      </v-container>
-    </v-main>
+    <div class="routeView">
+      <router-view></router-view>
+    </div>
   </v-app>
 </template>
 
@@ -111,9 +106,9 @@ export default {
   data() {
     return {
       userEmail: localStorage.getItem("email"),
-      
+
       menu: false,
-      
+
       drawer: false,
       link: 0,
       links: [
@@ -147,8 +142,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  margin: 4%;
-}
-</style>
+<style scoped src="@/css/Navbar.css"></style>

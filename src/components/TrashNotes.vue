@@ -23,7 +23,6 @@
         <v-btn @click="restore(items.id)" text>
           <v-icon>mdi-delete-restore</v-icon>
         </v-btn>
-        
       </v-card-actions>
     </v-card>
   </div>
@@ -58,7 +57,7 @@ export default {
       };
       const token = localStorage.getItem("token");
       api.methods
-        .deleteNoteForever(noteDetails,token)
+        .deleteNoteForever(noteDetails, token)
         .then((response) => {
           console.log(response);
         })
