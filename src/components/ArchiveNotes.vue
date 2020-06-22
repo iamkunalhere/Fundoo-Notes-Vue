@@ -29,7 +29,7 @@
         <v-btn small text>
           <v-icon>mdi-image-area</v-icon>
         </v-btn>
-        <v-btn small text>
+        <v-btn @click="unArchiveNote(items.id)" small text>
           <v-icon>mdi-package-up</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
@@ -82,6 +82,21 @@ export default {
       const token = localStorage.getItem("token");
       api.methods
         .deleteNote(noteDetails, token)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    unArchiveNote(id) {
+      const noteDetails = {
+        noteIdList: [id],
+        isArchived: false,
+      };
+      const token = localStorage.getItem("token");
+      api.methods
+        .archiveNote(noteDetails, token)
         .then((response) => {
           console.log(response);
         })

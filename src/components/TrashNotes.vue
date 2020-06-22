@@ -20,7 +20,7 @@
         <v-btn @click="deletePermanent(items.id)" text>
           <v-icon>mdi-delete-forever</v-icon>
         </v-btn>
-        <v-btn @click="restore()" text>
+        <v-btn @click="restore(items.id)" text>
           <v-icon>mdi-delete-restore</v-icon>
         </v-btn>
         
@@ -59,6 +59,21 @@ export default {
       const token = localStorage.getItem("token");
       api.methods
         .deleteNoteForever(noteDetails,token)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    restore(id) {
+      const noteDetails = {
+        noteIdList: [id],
+        isDeleted: false,
+      };
+      const token = localStorage.getItem("token");
+      api.methods
+        .deleteNote(noteDetails, token)
         .then((response) => {
           console.log(response);
         })
