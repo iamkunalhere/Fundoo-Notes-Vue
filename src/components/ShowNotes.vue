@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex xs12 sm6 md4 lg4 v-for="items in allNotes" :key="items.id">
+    <v-layout  row wrap  >
+      <v-flex xs12 sm6 md4 lg4 v-for="items in allNotes" :key="items.id" >
         <v-card class="ma-3">
           <v-textarea
             flat
@@ -72,7 +72,9 @@ export default {
         .then((response) => {
           console.log(response.data.data);
           const noteDetails = response.data.data;
-          this.allNotes = noteDetails;
+          this.allNotes = noteDetails.filter(function (note) {
+            return note.isDeleted == false && note.isArchived == false;
+          });
         })
         .catch((error) => {
           console.log(error);
