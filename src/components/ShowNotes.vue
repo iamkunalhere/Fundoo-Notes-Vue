@@ -88,6 +88,7 @@ export default {
         .deleteNote(noteDetails, token)
         .then((response) => {
           console.log(response);
+          this.getAllNotes();
         })
         .catch((error) => {
           console.log(error);
@@ -103,6 +104,7 @@ export default {
         .archiveNote(noteDetails, token)
         .then((response) => {
           console.log(response);
+          this.getAllNotes();
         })
         .catch((error) => {
           console.log(error);

@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <v-card width="350" v-for="items in archiveNotes" :key="items.id">
+  <v-container>
+    <v-layout row wrap>
+      <v-flex xs12 sm6 md4 lg4 v-for="items in archiveNotes" :key="items.id">
+        <v-card class="ma-3">
       <v-textarea
         flat
         solo
@@ -49,7 +51,9 @@
         </div>
       </v-card-actions>
     </v-card>
-  </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 import api from "../service/userService";
@@ -84,6 +88,7 @@ export default {
         .deleteNote(noteDetails, token)
         .then((response) => {
           console.log(response);
+          this.getArchiveNotes();
         })
         .catch((error) => {
           console.log(error);
@@ -99,6 +104,7 @@ export default {
         .archiveNote(noteDetails, token)
         .then((response) => {
           console.log(response);
+          this.getArchiveNotes();
         })
         .catch((error) => {
           console.log(error);

@@ -63,7 +63,7 @@
       </v-main>
     </div>
     <div class="notesContainer">
-      <ShowNotes />
+      <ShowNotes ref='updateShowNotes'/>
     </div>
     <v-snackbar v-model="successSnackbar">{{ successtext }}</v-snackbar>
     <v-snackbar v-model="failureSnackbar">{{ failuretext }}</v-snackbar>
@@ -103,6 +103,7 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.successSnackbar = true;
+            this.$refs.updateShowNotes.getAllNotes();
           } else {
             this.failureSnackbar = true;
           }

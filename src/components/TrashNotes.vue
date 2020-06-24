@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <v-card width="350" v-for="items in trashNotes" :key="items.id">
+  <v-container>
+    <v-layout row wrap>
+      <v-flex xs12 sm6 md4 lg4 v-for="items in trashNotes" :key="items.id">
+        <v-card class="ma-3">
       <v-textarea
         flat
         solo
@@ -25,7 +27,9 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 import api from "../service/userService";
@@ -60,6 +64,7 @@ export default {
         .deleteNoteForever(noteDetails, token)
         .then((response) => {
           console.log(response);
+          this.getTrashNotes();
         })
         .catch((error) => {
           console.log(error);
@@ -75,6 +80,7 @@ export default {
         .deleteNote(noteDetails, token)
         .then((response) => {
           console.log(response);
+          this.getTrashNotes();
         })
         .catch((error) => {
           console.log(error);
