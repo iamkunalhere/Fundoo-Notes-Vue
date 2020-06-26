@@ -39,6 +39,11 @@
             <v-list>
               <v-list-item>
                 <v-list-item-content>
+                  <v-list-item-title>Fundoo Account</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
                   <v-list-item-title>{{ userEmail }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -112,7 +117,7 @@ export default {
       drawer: false,
       link: 0,
       links: [
-        { text: "Notes", icon: "mdi-lightbulb", route: "createnote" },
+        { text: "Notes", icon: "mdi-lightbulb", route: "notelist" },
         { text: "Reminder", icon: "mdi-gesture-tap" },
         { divider: true },
         { heading: "Labels" },

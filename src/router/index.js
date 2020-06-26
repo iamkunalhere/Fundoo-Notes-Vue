@@ -5,10 +5,9 @@ import Login from "../components/Login";
 import ForgetPassword from "../components/ForgetPassword";
 import ResetPassword from "../components/ResetPassword";
 import Navbar from "../components/Navbar";
-import CreateNote from "../components/CreateNote";
-import ShowNotes from "../components/ShowNotes";
 import TrashNotes from "../components/TrashNotes";
 import ArchiveNotes from "../components/ArchiveNotes";
+import NoteList from "../components/NoteList";
 
 Vue.use(VueRouter);
 
@@ -40,18 +39,13 @@ const routes = [
     children: [
       {
         path: "",
-        name: "CreateNote",
-        component: CreateNote,
+        name: "NoteList",
+        component: NoteList,
       },
       {
-        path: "/createnote",
-        name: "CreateNote",
-        component: CreateNote,
-      },
-      {
-        path: "/shownotes",
-        name: "ShowNotes",
-        component: ShowNotes,
+        path: "/notelist",
+        name: "NoteList",
+        component: NoteList,
       },
       {
         path: "/trashnotes",

@@ -1,8 +1,6 @@
 <template>
-  <v-app>
-    <div >
-      <v-main>
-        <v-container fluid>
+  <div>
+        <v-container >
           <v-row align="center" justify="center">
             <v-col cols="6">
               <v-card
@@ -35,24 +33,7 @@
                   v-model="discription"
                 ></v-textarea>
                 <v-card-actions>
-                  <v-btn text>
-                    <v-icon>mdi-gesture-tap</v-icon>
-                  </v-btn>
-                  <v-btn text>
-                    <v-icon>mdi-account-plus</v-icon>
-                  </v-btn>
-                  <v-btn text>
-                    <v-icon>mdi-palette</v-icon>
-                  </v-btn>
-                  <v-btn text>
-                    <v-icon>mdi-image-area</v-icon>
-                  </v-btn>
-                  <v-btn text>
-                    <v-icon>mdi-package-down</v-icon>
-                  </v-btn>
-                  <v-btn text>
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
+                  <Icons v-bind:isCreateNote="true" />
                   <v-spacer></v-spacer>
                   <v-btn text @click="closeCard()">close</v-btn>
                 </v-card-actions>
@@ -60,31 +41,28 @@
             </v-col>
           </v-row>
         </v-container>
-      </v-main>
+      
+    <div>
+      <v-snackbar v-model="successSnackbar">{{ successtext }}</v-snackbar>
+  
     </div>
-    <div class="notesContainer">
-      <ShowNotes ref='updateShowNotes'/>
     </div>
-    <v-snackbar v-model="successSnackbar">{{ successtext }}</v-snackbar>
-    <v-snackbar v-model="failureSnackbar">{{ failuretext }}</v-snackbar>
-  </v-app>
 </template>
 
 <script>
 import api from "../service/userService";
-import ShowNotes from "../components/ShowNotes";
+import Icons from "../components/Icons";
 export default {
-  components: { ShowNotes },
+  components: { Icons },
   name: "CreateNote",
+  props: ["isCreateNote"],
   data() {
     return {
       isdisplay: true,
       title: "",
       discription: "",
       successSnackbar: false,
-      failureSnackbar: false,
       successtext: "Note added Successfully",
-      failuretext: "Empty Note...!",
     };
   },
   methods: {
@@ -103,10 +81,8 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.successSnackbar = true;
-            this.$refs.updateShowNotes.getAllNotes();
-          } else {
-            this.failureSnackbar = true;
-          }
+          this.$root.$refs.ShowNotes.getAllNotes();
+          } 
         })
         .catch((error) => {
           console.log(error);
@@ -116,4 +92,4 @@ export default {
 };
 </script>
 
-<style scoped src="@/css/CreateNote.css"></style>
+<style ></style>

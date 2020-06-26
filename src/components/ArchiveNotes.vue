@@ -103,8 +103,9 @@ export default {
       api.methods
         .archiveNote(noteDetails, token)
         .then((response) => {
-          console.log(response);
-          this.getArchiveNotes();
+          if(response) {
+            this.getArchiveNotes();
+          }
         })
         .catch((error) => {
           console.log(error);
