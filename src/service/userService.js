@@ -5,18 +5,14 @@ const url = `http://fundoonotes.incubation.bridgelabz.com/api`;
 export default {
   methods: {
     registerUser: function(data) {
-      return axios
-        .post(url + `/user/userSignUp`, data)
-        .then((response) => {
-          return response;
-        })
+      return axios.post(url + `/user/userSignUp`, data).then((response) => {
+        return response;
+      });
     },
     loginUser(loginInfo) {
-      return axios
-        .post(url + `/user/login`, loginInfo)
-        .then((response) => {
-          return response;
-        })
+      return axios.post(url + `/user/login`, loginInfo).then((response) => {
+        return response;
+      });
     },
     logoutUser(token) {
       return axios
@@ -35,14 +31,14 @@ export default {
         })
         .then((response) => {
           return response;
-        })
+        });
     },
     resetPassword: function(newPassword, token) {
       return axios
         .post(url + `/user/reset-password?access_token=${token}`, newPassword)
         .then((response) => {
           return response;
-        })
+        });
     },
     addNote(noteDetail, token) {
       return axios
@@ -62,7 +58,7 @@ export default {
           return error;
         });
     },
-    deleteNote(noteDetail,token) {
+    deleteNote(noteDetail, token) {
       return axios
         .post(url + `/notes/trashNotes?access_token=${token}`, noteDetail)
         .then((response) => {
@@ -80,9 +76,12 @@ export default {
           return error;
         });
     },
-    deleteNoteForever(noteDetail,token) {
+    deleteNoteForever(noteDetail, token) {
       return axios
-        .post(url + `/notes/deleteForeverNotes?access_token=${token}`, noteDetail)
+        .post(
+          url + `/notes/deleteForeverNotes?access_token=${token}`,
+          noteDetail
+        )
         .then((response) => {
           return response;
         })
@@ -90,7 +89,7 @@ export default {
           return error;
         });
     },
-    archiveNote(noteDetail,token) {
+    archiveNote(noteDetail, token) {
       return axios
         .post(url + `/notes/archiveNotes?access_token=${token}`, noteDetail)
         .then((response) => {
@@ -104,6 +103,16 @@ export default {
       return axios
         .get(url + `/notes/getArchiveNotesList?access_token=${token}`)
         .then((response) => response.data)
+        .catch((error) => {
+          return error;
+        });
+    },
+    updateNote(noteDetail, token) {
+      return axios
+        .post(url + `/notes/updateNotes?access_token=${token}`, noteDetail)
+        .then((response) => {
+          return response;
+        })
         .catch((error) => {
           return error;
         });

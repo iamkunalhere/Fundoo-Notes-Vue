@@ -85,12 +85,12 @@ export default {
       api.methods
         .registerUser(userDetails)
         .then((response) => {
-          if(response.status == 200) {
+          if (response.status == 200) {
             this.successSnackbar = true;
           }
         })
         .catch((error) => {
-          if(error) {
+          if (error) {
             this.failureSnackbar = true;
           }
         });

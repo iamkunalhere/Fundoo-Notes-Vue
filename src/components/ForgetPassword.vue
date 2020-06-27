@@ -50,9 +50,9 @@ export default {
     forgetPassword: function() {
       if (this.email == null) {
         this.emptyFieldSnackbar = true;
-      } 
-      else {
-        api.methods.forgetPassword(this.email)
+      } else {
+        api.methods
+          .forgetPassword(this.email)
           .then((response) => {
             if (response.status == 200) {
               this.successSnackbar = true;

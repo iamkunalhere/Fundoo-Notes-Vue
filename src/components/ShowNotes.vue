@@ -5,12 +5,12 @@
         xs12
         sm6
         md4
-        lg4
+        lg3
         @click="getID(item)"
-        v-for="item in allNotes"
+        v-for="item in allNotes.slice().reverse()"
         :key="item.id"
       >
-        <v-card class="ma-3">
+        <v-card class="ma-3" @click="openDialog(item)">
           <v-textarea
             flat
             solo
@@ -27,22 +27,28 @@
             auto-grow
           ></v-textarea>
           <v-card-actions>
-            <Icons v-bind:note="item" v-bind:isCreateNote="false"/>
+            <Icons v-bind:note="item" v-bind:isCreateNote="false" />
           </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
+    <v-dialog v-model="dialog" width="510">
+      <UpdateNote v-bind:noteDetails="updateNoteData" />
+    </v-dialog>
   </v-container>
 </template>
 <script>
 import Icons from "../components/Icons";
+import UpdateNote from "../components/UpdateNote";
 import api from "../service/userService";
 export default {
-  components: { Icons },
+  components: { Icons, UpdateNote },
   name: "ShowNotes",
   props: ["isCreateNote"],
   data() {
     return {
+      dialog: false,
+      updateNoteData: [],
       allNotes: [],
     };
   },
@@ -64,6 +70,14 @@ export default {
     },
     getID(item) {
       return item;
+    },
+    openDialog(item) {
+      this.updateNoteData = item;
+      this.dialog = true;
+    },
+    closeDialog() {
+      this.dialog = false;
+      this.getAllNotes();
     },
   },
   created() {

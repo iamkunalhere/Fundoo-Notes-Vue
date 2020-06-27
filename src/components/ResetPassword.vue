@@ -45,13 +45,13 @@ export default {
     resetPassword: function() {
       if (this.password == null) {
         this.emptyFieldSnackbar = true;
-      } 
-      else {
+      } else {
         const credentials = {
           newPassword: this.password,
         };
         const token = this.$route.params.token;
-        api.methods.resetPassword(credentials, token)
+        api.methods
+          .resetPassword(credentials, token)
           .then((response) => {
             if (response.status == 204) {
               this.successSnackbar = true;

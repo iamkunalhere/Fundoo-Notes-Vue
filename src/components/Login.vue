@@ -9,35 +9,37 @@
   <v-app>
     <div class="login-page">
       <v-card>
-      <div class="form">
-        <h2 style="color:green;">Fundoo Login</h2>
-        <form class="login-form">
-          <v-text-field
-            label="Email"
-            required
-            v-model="email"
-            autocomplete="off"
-          ></v-text-field>
-          <v-text-field
-            type="password"
-            label="Password"
-            required
-            v-model="password"
-            autocomplete="off"
-          ></v-text-field>
-          <div>
-            <router-link to="/forgetPassword">Forgot Password?</router-link>
-            <v-btn type="button" v-on:click="loginUser()">Login</v-btn>
-          </div>
-          <br />
-          <div>
-            <p class="grey lighten-2 blue--text">
-              Don't have an account?
-              <router-link to="/registration"><u>Register here</u></router-link>
-            </p>
-          </div>
-        </form>
-      </div>
+        <div class="form">
+          <h2 style="color:green;">Fundoo Login</h2>
+          <form class="login-form">
+            <v-text-field
+              label="Email"
+              required
+              v-model="email"
+              autocomplete="off"
+            ></v-text-field>
+            <v-text-field
+              type="password"
+              label="Password"
+              required
+              v-model="password"
+              autocomplete="off"
+            ></v-text-field>
+            <div>
+              <router-link to="/forgetPassword">Forgot Password?</router-link>
+              <v-btn type="button" v-on:click="loginUser()">Login</v-btn>
+            </div>
+            <br />
+            <div>
+              <p class="grey lighten-2 blue--text">
+                Don't have an account?
+                <router-link to="/registration"
+                  ><u>Register here</u></router-link
+                >
+              </p>
+            </div>
+          </form>
+        </div>
       </v-card>
     </div>
     <v-snackbar v-model="emptyFieldSnackbar">{{ emptyfieldtext }}</v-snackbar>
@@ -67,30 +69,30 @@ export default {
   },
   methods: {
     loginUser: function() {
-          const loginInfo = {
-          email: this.email,
-          password: this.password,
-        };
-        if(this.email == null || this.password == null) {
-          this.emptyFieldSnackbar = true;
-        }
-        else {
-          api.methods.loginUser(loginInfo)
-          .then(response => {
-            if(response.status == 200) {
-              localStorage.setItem("token",response.data.id);
-              localStorage.setItem("email",response.data.email);
+      const loginInfo = {
+        email: this.email,
+        password: this.password,
+      };
+      if (this.email == null || this.password == null) {
+        this.emptyFieldSnackbar = true;
+      } else {
+        api.methods
+          .loginUser(loginInfo)
+          .then((response) => {
+            if (response.status == 200) {
+              localStorage.setItem("token", response.data.id);
+              localStorage.setItem("email", response.data.email);
               this.$router.push("/navbar");
             }
           })
-          .catch(error => {
-            if(error) {
+          .catch((error) => {
+            if (error) {
               this.failureSnackbar = true;
             }
           });
-        }      
-    } 
-  }
+      }
+    },
+  },
 };
 </script>
 

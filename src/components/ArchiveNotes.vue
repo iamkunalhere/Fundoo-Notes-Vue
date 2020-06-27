@@ -1,56 +1,56 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs12 sm6 md4 lg4 v-for="items in archiveNotes" :key="items.id">
+      <v-flex xs12 sm6 md4 lg3 v-for="items in archiveNotes" :key="items.id">
         <v-card class="ma-3">
-      <v-textarea
-        flat
-        solo
-        rows="1"
-        v-model="items.title"
-        auto-grow
-      ></v-textarea>
+          <v-textarea
+            flat
+            solo
+            rows="1"
+            v-model="items.title"
+            auto-grow
+          ></v-textarea>
 
-      <v-textarea
-        flat
-        solo
-        rows="1"
-        v-model="items.description"
-        auto-grow
-      ></v-textarea>
-      <v-card-actions>
-        <v-btn small text>
-          <v-icon>mdi-gesture-tap</v-icon>
-        </v-btn>
-        <v-btn small text>
-          <v-icon>mdi-account-plus</v-icon>
-        </v-btn>
-        <v-btn small text>
-          <v-icon>mdi-palette</v-icon>
-        </v-btn>
-        <v-btn small text>
-          <v-icon>mdi-image-area</v-icon>
-        </v-btn>
-        <v-btn @click="unArchiveNote(items.id)" small text>
-          <v-icon>mdi-package-up</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <div class="text-center">
-          <v-menu offset-x>
-            <template v-slot:activator="{ on }">
-              <v-btn small text v-on="on">
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item @click="moveToTrash(items.id)">
-                delete
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
-      </v-card-actions>
-    </v-card>
+          <v-textarea
+            flat
+            solo
+            rows="1"
+            v-model="items.description"
+            auto-grow
+          ></v-textarea>
+          <v-card-actions>
+            <v-btn x-small text>
+              <v-icon>mdi-gesture-tap</v-icon>
+            </v-btn>
+            <v-btn x-small text>
+              <v-icon>mdi-account-plus</v-icon>
+            </v-btn>
+            <v-btn x-small text>
+              <v-icon>mdi-palette</v-icon>
+            </v-btn>
+            <v-btn x-small text>
+              <v-icon>mdi-image-area</v-icon>
+            </v-btn>
+            <v-btn @click="unArchiveNote(items.id)" x-small text>
+              <v-icon>mdi-package-up</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+            <div class="text-center">
+              <v-menu offset-x>
+                <template v-slot:activator="{ on }">
+                  <v-btn x-small text v-on="on">
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item @click="moveToTrash(items.id)">
+                    delete
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+          </v-card-actions>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -103,7 +103,7 @@ export default {
       api.methods
         .archiveNote(noteDetails, token)
         .then((response) => {
-          if(response) {
+          if (response) {
             this.getArchiveNotes();
           }
         })

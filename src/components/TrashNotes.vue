@@ -1,32 +1,32 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs12 sm6 md4 lg4 v-for="items in trashNotes" :key="items.id">
+      <v-flex xs12 sm6 md4 lg3 v-for="items in trashNotes" :key="items.id">
         <v-card class="ma-3">
-      <v-textarea
-        flat
-        solo
-        rows="1"
-        v-model="items.title"
-        auto-grow
-      ></v-textarea>
+          <v-textarea
+            flat
+            solo
+            rows="1"
+            v-model="items.title"
+            auto-grow
+          ></v-textarea>
 
-      <v-textarea
-        flat
-        solo
-        rows="1"
-        v-model="items.description"
-        auto-grow
-      ></v-textarea>
-      <v-card-actions>
-        <v-btn @click="deletePermanent(items.id)" text>
-          <v-icon>mdi-delete-forever</v-icon>
-        </v-btn>
-        <v-btn @click="restore(items.id)" text>
-          <v-icon>mdi-delete-restore</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+          <v-textarea
+            flat
+            solo
+            rows="1"
+            v-model="items.description"
+            auto-grow
+          ></v-textarea>
+          <v-card-actions>
+            <v-btn @click="deletePermanent(items.id)" small text>
+              <v-icon>mdi-delete-forever</v-icon>
+            </v-btn>
+            <v-btn @click="restore(items.id)" small text>
+              <v-icon>mdi-delete-restore</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>

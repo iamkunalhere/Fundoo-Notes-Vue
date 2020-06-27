@@ -1,52 +1,51 @@
 <template>
   <div>
-        <v-container >
-          <v-row align="center" justify="center">
-            <v-col cols="6">
-              <v-card
-                width="510"
-                height="50"
-                v-show="isdisplay"
-                @click="openCard()"
-              >
-                <v-text-field flat placeholder="Create a Note..." solo>
-                </v-text-field>
-              </v-card>
-              <v-card width="510" v-show="!isdisplay">
-                <v-textarea
-                  flat
-                  solo
-                  rows="1"
-                  row-height="10"
-                  label="Title"
-                  auto-grow
-                  v-model="title"
-                ></v-textarea>
+    <v-container>
+      <v-row align="center" justify="center">
+        <v-col cols="6">
+          <v-card
+            width="510"
+            height="50"
+            v-show="isdisplay"
+            @click="openCard()"
+          >
+            <v-text-field flat placeholder="Create a Note..." solo>
+            </v-text-field>
+          </v-card>
+          <v-card width="510" v-show="!isdisplay">
+            <v-textarea
+              flat
+              solo
+              rows="1"
+              row-height="10"
+              label="Title"
+              auto-grow
+              v-model="title"
+            ></v-textarea>
 
-                <v-textarea
-                  flat
-                  solo
-                  rows="1"
-                  row-height="10"
-                  label="Note detail..."
-                  auto-grow
-                  v-model="discription"
-                ></v-textarea>
-                <v-card-actions>
-                  <Icons v-bind:isCreateNote="true" />
-                  <v-spacer></v-spacer>
-                  <v-btn text @click="closeCard()">close</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      
+            <v-textarea
+              flat
+              solo
+              rows="1"
+              row-height="10"
+              label="Note detail..."
+              auto-grow
+              v-model="discription"
+            ></v-textarea>
+            <v-card-actions>
+              <Icons v-bind:isCreateNote="true" />
+              <v-spacer></v-spacer>
+              <v-btn text @click="closeCard()">close</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <div>
       <v-snackbar v-model="successSnackbar">{{ successtext }}</v-snackbar>
-  
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -81,8 +80,8 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.successSnackbar = true;
-          this.$root.$refs.ShowNotes.getAllNotes();
-          } 
+            this.$root.$refs.ShowNotes.getAllNotes();
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -92,4 +91,4 @@ export default {
 };
 </script>
 
-<style ></style>
+<style></style>
