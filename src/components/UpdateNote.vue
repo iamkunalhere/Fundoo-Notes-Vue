@@ -30,7 +30,7 @@
 
 <script>
 import Icons from "../components/Icons";
-import api from "../service/userService";
+import notesApi from "../service/notesService";
 export default {
   components: { Icons },
   name: "UpdateNote",
@@ -46,7 +46,7 @@ export default {
         description: this.noteDetails.description,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .updateNote(noteDetails, token)
         .then((response) => {
           if (response) {

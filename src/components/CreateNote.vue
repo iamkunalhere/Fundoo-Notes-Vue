@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import api from "../service/userService";
+import notesApi from "../service/notesService";
 import Icons from "../components/Icons";
 export default {
   components: { Icons },
@@ -75,7 +75,7 @@ export default {
         description: this.discription,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .addNote(newNote, token)
         .then((response) => {
           if (response.status == 200) {

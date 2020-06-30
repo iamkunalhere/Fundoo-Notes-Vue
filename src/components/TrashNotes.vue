@@ -32,7 +32,7 @@
   </v-container>
 </template>
 <script>
-import api from "../service/userService";
+import notesApi from "../service/notesService";
 export default {
   name: "TrashNotes",
   data() {
@@ -43,7 +43,7 @@ export default {
   methods: {
     getTrashNotes() {
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .getTrashNotes(token)
         .then((response) => {
           console.log(response.data.data);
@@ -60,7 +60,7 @@ export default {
         isDeleted: true,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .deleteNoteForever(noteDetails, token)
         .then((response) => {
           console.log(response);
@@ -76,7 +76,7 @@ export default {
         isDeleted: false,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .deleteNote(noteDetails, token)
         .then((response) => {
           console.log(response);

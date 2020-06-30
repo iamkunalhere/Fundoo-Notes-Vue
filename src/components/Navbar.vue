@@ -19,12 +19,10 @@
       >
       </v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
+    
 
       <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
+        <v-icon>mdi-view-list</v-icon>
       </v-btn>
 
       <div class="text-center">

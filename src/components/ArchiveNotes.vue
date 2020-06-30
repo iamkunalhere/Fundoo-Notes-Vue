@@ -56,7 +56,7 @@
   </v-container>
 </template>
 <script>
-import api from "../service/userService";
+import notesApi from "../service/notesService";
 export default {
   name: "ArchiveNotes",
   data() {
@@ -67,7 +67,7 @@ export default {
   methods: {
     getArchiveNotes() {
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .getArchiveNotes(token)
         .then((response) => {
           console.log(response.data.data);
@@ -84,7 +84,7 @@ export default {
         isDeleted: true,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .deleteNote(noteDetails, token)
         .then((response) => {
           console.log(response);
@@ -100,7 +100,7 @@ export default {
         isArchived: false,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .archiveNote(noteDetails, token)
         .then((response) => {
           if (response) {

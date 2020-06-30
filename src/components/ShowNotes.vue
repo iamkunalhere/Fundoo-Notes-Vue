@@ -10,13 +10,14 @@
         v-for="item in allNotes.slice().reverse()"
         :key="item.id"
       >
-        <v-card class="ma-3" @click="openDialog(item)">
+        <v-card class="ma-3" >
           <v-textarea
             flat
             solo
             rows="1"
             v-model="item.title"
             auto-grow
+            @click="openDialog(item)"
           ></v-textarea>
 
           <v-textarea
@@ -40,7 +41,7 @@
 <script>
 import Icons from "../components/Icons";
 import UpdateNote from "../components/UpdateNote";
-import api from "../service/userService";
+import notesApi from "../service/notesService";
 export default {
   components: { Icons, UpdateNote },
   name: "ShowNotes",
@@ -55,7 +56,7 @@ export default {
   methods: {
     getAllNotes() {
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .getAllNotes(token)
         .then((response) => {
           console.log(response.data.data);

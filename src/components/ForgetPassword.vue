@@ -3,7 +3,7 @@
     <div class="login-page">
       <v-card>
         <div class="form">
-          <h2 style="color:green;">Enter Email</h2>
+          <h2 style="color:green;">Enter Registered Email</h2>
           <form class="login-form">
             <v-text-field
               label="Email"

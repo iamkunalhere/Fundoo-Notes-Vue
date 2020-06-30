@@ -10,7 +10,7 @@
     <div class="login-page">
       <v-card>
         <div class="form">
-          <h2 style="color:green;">Fundoo Registration</h2>
+          <h2 style="color:green;">FundooNotes Registration</h2>
           <form>
             <v-text-field
               label="Firstname"

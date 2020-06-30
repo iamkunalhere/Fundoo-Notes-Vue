@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import api from "../service/userService";
+import notesApi from "../service/notesService";
 export default {
   name: "Icons",
   props: ["note", "isCreateNote"],
@@ -87,11 +87,12 @@ export default {
         isArchived: true,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .archiveNote(noteDetails, token)
         .then((response) => {
-          console.log(response);
-          this.$root.$refs.ShowNotes.getAllNotes();
+          if (response) {
+            this.$root.$refs.ShowNotes.getAllNotes();
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -103,11 +104,12 @@ export default {
         isDeleted: true,
       };
       const token = localStorage.getItem("token");
-      api.methods
+      notesApi.methods
         .deleteNote(noteDetails, token)
         .then((response) => {
-          console.log(response);
-          this.$root.$refs.ShowNotes.getAllNotes();
+          if (response) {
+            this.$root.$refs.ShowNotes.getAllNotes();
+          }
         })
         .catch((error) => {
           console.log(error);
