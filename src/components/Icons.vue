@@ -22,7 +22,7 @@
         </v-date-picker>
       </v-menu>
 
-      <v-btn x-small text>
+      <v-btn x-small text @click="openCollabDialog(note)">
         <v-icon>mdi-account-plus</v-icon>
       </v-btn>
 
@@ -86,9 +86,8 @@ export default {
         noteIdList: [note.id],
         isArchived: true,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .archiveNote(noteDetails, token)
+        .archiveNote(noteDetails)
         .then((response) => {
           if (response) {
             this.$root.$refs.ShowNotes.getAllNotes();
@@ -103,9 +102,8 @@ export default {
         noteIdList: [note.id],
         isDeleted: true,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .deleteNote(noteDetails, token)
+        .deleteNote(noteDetails)
         .then((response) => {
           if (response) {
             this.$root.$refs.ShowNotes.getAllNotes();

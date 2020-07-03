@@ -31,19 +31,19 @@ import api from "../service/userService";
 export default {
   name: "ForgetPassword",
   props: {
-    msg: String,
+    msg: String
   },
   data() {
     return {
       input: {
-        email: "",
+        email: ""
       },
       successSnackbar: false,
       emptyFieldSnackbar: false,
       failureSnackbar: false,
       successtext: "Email Sent..!",
       emptyfieldtext: "Email can't be empty...!",
-      failuretext: "Invalid Details...!",
+      failuretext: "Invalid Details...!"
     };
   },
   methods: {
@@ -53,19 +53,20 @@ export default {
       } else {
         api.methods
           .forgetPassword(this.email)
-          .then((response) => {
+          .then(response => {
+            console.log(response);
             if (response.status == 200) {
               this.successSnackbar = true;
             }
           })
-          .catch((error) => {
+          .catch(error => {
             if (error) {
               this.failureSnackbar = true;
             }
           });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

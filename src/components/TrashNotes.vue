@@ -42,9 +42,8 @@ export default {
   },
   methods: {
     getTrashNotes() {
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .getTrashNotes(token)
+        .getTrashNotes()
         .then((response) => {
           console.log(response.data.data);
           const noteDetails = response.data.data;
@@ -59,9 +58,8 @@ export default {
         noteIdList: [id],
         isDeleted: true,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .deleteNoteForever(noteDetails, token)
+        .deleteNoteForever(noteDetails)
         .then((response) => {
           console.log(response);
           this.getTrashNotes();
@@ -75,9 +73,8 @@ export default {
         noteIdList: [id],
         isDeleted: false,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .deleteNote(noteDetails, token)
+        .deleteNote(noteDetails)
         .then((response) => {
           console.log(response);
           this.getTrashNotes();

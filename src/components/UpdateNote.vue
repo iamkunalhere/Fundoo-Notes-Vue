@@ -45,9 +45,8 @@ export default {
         title: this.noteDetails.title,
         description: this.noteDetails.description,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .updateNote(noteDetails, token)
+        .updateNote(noteDetails)
         .then((response) => {
           if (response) {
             this.$root.$refs.ShowNotes.closeDialog();

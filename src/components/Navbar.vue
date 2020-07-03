@@ -19,7 +19,6 @@
       >
       </v-text-field>
       <v-spacer></v-spacer>
-    
 
       <v-btn icon>
         <v-icon>mdi-view-list</v-icon>
@@ -128,9 +127,8 @@ export default {
   },
   methods: {
     userLogout() {
-      const token = localStorage.getItem("token");
       api.methods
-        .logoutUser(token)
+        .logoutUser()
         .then((response) => {
           console.log(response);
           if (response.status == 204) {

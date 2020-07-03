@@ -1,24 +1,23 @@
-import service from "../service/service";
-
-const url = `http://fundoonotes.incubation.bridgelabz.com/api/user`;
-// const token = localStorage.getItem("token");
+import service from "../service/service.js";
+require('dotenv').config();
+const url = `http://fundoonotes.incubation.bridgelabz.com/api/user/`;
 
 export default {
   methods: {
-    registerUser: function(data) {
-      return service.postData(url,`/userSignUp`,data);
+    registerUser(data) {
+      return service.postDataBeforeLogin(url, `userSignUp`, data);
     },
     loginUser(loginInfo) {
-      return service.postData(url,`/login`,loginInfo);
+      return service.postDataBeforeLogin(url, `login`, loginInfo);
     },
-    logoutUser(token) {
-      return service.postData(url,`/logout?access_token=${token}`);
+    logoutUser() {
+      return service.postData(url, `logout?access_token=`);
     },
-    forgetPassword: function(userEmail) {
-      return service.postData(url,`/reset`,userEmail);
+    forgetPassword(userEmail) {
+      return service.postDataBeforeLogin(url, `reset`, userEmail);
     },
-    resetPassword: function(newPassword, token) {
-      return service.postData(url,`/reset-password?access_token=${token}`,newPassword);
-    },
-  },
-};  
+    resetPassword(newPassword) {
+      return service.postData(url, `reset-password?access_token=`, newPassword);
+    }
+  }
+};

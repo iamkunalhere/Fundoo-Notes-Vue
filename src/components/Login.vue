@@ -53,46 +53,47 @@ import api from "../service/userService";
 export default {
   name: "Login",
   props: {
-    msg: String,
+    msg: String
   },
   data() {
     return {
       input: {
         email: "",
-        password: "",
+        password: ""
       },
       emptyFieldSnackbar: false,
       failureSnackbar: false,
       emptyfieldtext: "Email or Password can't be empty...!",
-      failuretext: "Invalid Details...!",
+      failuretext: "Invalid Details...!"
     };
   },
   methods: {
     loginUser: function() {
       const loginInfo = {
         email: this.email,
-        password: this.password,
+        password: this.password
       };
       if (this.email == null || this.password == null) {
         this.emptyFieldSnackbar = true;
       } else {
         api.methods
           .loginUser(loginInfo)
-          .then((response) => {
+          .then(response => {
+            console.log(response);
             if (response.status == 200) {
               localStorage.setItem("token", response.data.id);
               localStorage.setItem("email", response.data.email);
               this.$router.push("/navbar");
             }
           })
-          .catch((error) => {
+          .catch(error => {
             if (error) {
               this.failureSnackbar = true;
             }
           });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -74,9 +74,8 @@ export default {
         title: this.title,
         description: this.discription,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .addNote(newNote, token)
+        .addNote(newNote)
         .then((response) => {
           if (response.status == 200) {
             this.successSnackbar = true;

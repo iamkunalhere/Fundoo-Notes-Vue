@@ -66,9 +66,8 @@ export default {
   },
   methods: {
     getArchiveNotes() {
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .getArchiveNotes(token)
+        .getArchiveNotes()
         .then((response) => {
           console.log(response.data.data);
           const noteDetails = response.data.data;
@@ -83,9 +82,8 @@ export default {
         noteIdList: [id],
         isDeleted: true,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .deleteNote(noteDetails, token)
+        .deleteNote(noteDetails)
         .then((response) => {
           console.log(response);
           this.getArchiveNotes();
@@ -99,9 +97,8 @@ export default {
         noteIdList: [id],
         isArchived: false,
       };
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .archiveNote(noteDetails, token)
+        .archiveNote(noteDetails)
         .then((response) => {
           if (response) {
             this.getArchiveNotes();

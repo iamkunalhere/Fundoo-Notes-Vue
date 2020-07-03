@@ -10,7 +10,7 @@
         v-for="item in allNotes.slice().reverse()"
         :key="item.id"
       >
-        <v-card class="ma-3" >
+        <v-card class="ma-3">
           <v-textarea
             flat
             solo
@@ -50,22 +50,21 @@ export default {
     return {
       dialog: false,
       updateNoteData: [],
-      allNotes: [],
+      allNotes: []
     };
   },
   methods: {
     getAllNotes() {
-      const token = localStorage.getItem("token");
       notesApi.methods
-        .getAllNotes(token)
-        .then((response) => {
-          console.log(response.data.data);
+        .getAllNotes()
+        .then(response => {
+          console.log(response);
           const noteDetails = response.data.data;
           this.allNotes = noteDetails.filter(function(note) {
             return note.isDeleted == false && note.isArchived == false;
           });
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
@@ -79,7 +78,7 @@ export default {
     closeDialog() {
       this.dialog = false;
       this.getAllNotes();
-    },
+    }
   },
   created() {
     this.$root.$refs.ShowNotes = this;
@@ -87,7 +86,7 @@ export default {
   mounted() {
     this.getAllNotes();
     this.getID();
-  },
+  }
 };
 </script>
 
